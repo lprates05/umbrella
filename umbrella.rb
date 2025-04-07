@@ -12,8 +12,8 @@ gmaps_key = ENV.fetch("GMAPS_KEY")
 #Getting User Location
 
 pp "Where are you?"
-#user_loc = gets.chomp.capitalize
-pp user_loc = "Harper Center"
+user_loc = gets.chomp.capitalize
+#pp user_loc 
 
 #Gmaps API
 gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address=Merchandise%20Mart%20Chicago&key=#{gmaps_key}"
@@ -78,6 +78,17 @@ hourly_data = hourly_forecast.fetch("data")
 hourly_hash = hourly_data.at(0)
 hourly_prec_prob = hourly_hash.fetch("precipProbability")
 
-#12.times do |hourly_prec|
-  pp hourly_prec_prob 
-#end
+12.times do
+  if hourly_prec_prob > 10
+    high_rain_prob = true
+  else
+    high_rain_prob = false
+  end 
+end
+
+
+if high_rain_prob == false
+  pp "You probably don't need an umbrella today!"
+else 
+  pp "You might want to carry an umbrella with you!"
+end
